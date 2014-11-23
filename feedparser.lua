@@ -10,7 +10,7 @@ local pairs, ipairs = pairs, ipairs
 module('feedparser')
 
 _DESCRIPTION = "RSS and Atom feed parser"
-_VERSION = "feedparser 0.7"
+_VERSION = "feedparser 0.7 +RB"
 
 local blanky = XMLElement.new() --useful in a whole bunch of places
 
@@ -41,7 +41,7 @@ local function parse_entries(entries_el, format_str, base)
 				entry.parlycal_event_id=el:getAttr('id')
 				entry.parlycal_house=el:getChild('parlycal:house'):getText()
 				entry.parlycal_chamber=el:getChild('parlycal:chamber'):getText()
-				entry.parlycal_date=dateparser.parse(el:getChild('parlycal:date'):getText())
+				entry.parlycal_date=el:getChild('parlycal:date'):getText()
 				
 			--link(s)
 			elseif format_str == 'rss' and tag=='link' then
