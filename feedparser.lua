@@ -40,6 +40,8 @@ local function parse_entries(entries_el, format_str, base)
 			elseif tag == 'parlycal:event' then
 				entry.parlycal_event_id=el:getAttr('id')
 				entry.parlycal_house=el:getChild('parlycal:house'):getText()
+				entry.parlycal_chamber=el:getChild('parlycal:chamber'):getText()
+				entry.parlycal_date=dateparser.parse(el:getChild('parlycal:date'):getText())
 				
 			--link(s)
 			elseif format_str == 'rss' and tag=='link' then
