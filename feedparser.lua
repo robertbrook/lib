@@ -36,9 +36,10 @@ local function parse_entries(entries_el, format_str, base)
 			if tag == 'title' or tag == 'dc:title' or tag =='rdf:title' then --'dc:title' doesn't occur in atom feeds, but whatever.
 				entry.title=el:getText()
 				
-			--parlycal_event_id
+			--parlycal
 			elseif tag == 'parlycal:event' then
 				entry.parlycal_event_id=el:getAttr('id')
+				entry.parlycal_house=el:getChild('parlycal:house'):getText()
 				
 			--link(s)
 			elseif format_str == 'rss' and tag=='link' then
